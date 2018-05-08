@@ -6,7 +6,7 @@ const AlimentoSchema = new Schema({
         type: String,
         required: [true, 'Insira o nome do Alimento'] 
     },
-    tipe: { 
+    tipo: { 
         type: String,
         enum: [
             'proteína',
