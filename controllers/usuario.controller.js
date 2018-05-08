@@ -4,7 +4,7 @@ const { prop } = require('ramda');
 const usuarios = async (req, res, next) => {
     try { 
         const usuarios = await Usuario.find(req.query);
-        res.send(usuarios);
+        res.json(usuarios);
     } catch (err) {
         next(err)
     }
@@ -14,6 +14,7 @@ const usuarioById = async (req, res, next) => {
     try {
         const _id = prop('id', req.params);
         const usuario = await Usuario.findById(_id);
+        res.json(usuario)
     } catch (err) {
         next(err)
     }
@@ -32,12 +33,15 @@ const saveUsuario = async (req, res, next) => {
 
 const updateUsuario = async (req, res, next) => {
     try {
-        const quilometragem = prop('body', req);
         const _id = prop('id', req.params);
+        const usuario = prop('body', req);
         const usuarioUpdate = await Usuario
-            .findByIdAndUpdate(_id, usuario, {
-                runValidators: true
-            });
+            .findByIdAndUpdate(
+                _id, 
+                usuario,
+                { new: true }
+            );
+        res.json(usuarioUpdate);
     } catch (err) {
         next(err)
     }

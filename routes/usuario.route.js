@@ -10,6 +10,6 @@ const {
 router.get('/usuarios', usuarios);
 router.get('/usuarios/:id', usuarioById);
 router.post('/usuarios', saveUsuario);
-router.put('/usuarios:id', updateUsuario);
+router.put('/usuarios/:id', updateUsuario);
 
 module.exports = router;
