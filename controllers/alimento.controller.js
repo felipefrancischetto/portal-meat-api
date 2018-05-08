@@ -1,9 +1,9 @@
-const Alimento = require('../models/alimento.model');
+const { AlimentoModel } = require('../models/alimento.model');
 const { prop } = require('ramda');
 
 const alimentos = async (req, res, next) => {
     try {
-        const usuarios = await Alimento.find(req.body);
+        const usuarios = await AlimentoModel.find(req.body);
         res.json(usuarios);
     } catch (err) {
         next(err);
@@ -13,7 +13,7 @@ const alimentos = async (req, res, next) => {
 const alimentoById = async (req, res, next) => {
     try {
         const _id = prop('id', req.params);
-        const alimento = await Alimento.findById(_id);
+        const alimento = await AlimentoModel.findById(_id);
         res.json(alimento);
     } catch (err) {
         next(err);
@@ -24,7 +24,7 @@ const saveAlimento = async (req, res, next) => {
     try {
         const alimento = prop('body', req);
         const alimentoModel = new Alimento(alimento);
-        const newAlimento = await alimentoModel.save();
+        const newAlimento = await AlimentoModel.save();
         res.json(newAlimento);
     } catch (err) {
         next(err)
@@ -35,7 +35,7 @@ const updateAlimento = async (req, res, next) => {
     try {
         const _id = prop('id', req.params);
         const alimento = prop('body', req);            
-        const alimentoUpdate = await Alimento
+        const alimentoUpdate = await AlimentoModel
             .findByIdAndUpdate(
                 _id,
                 alimento,
@@ -51,7 +51,7 @@ deleteAlimento = async (req, res, next) => {
     try {
         const _id = prop('id', req.params);
         const alimento = prop('body', req)
-        const alimentoRemove = await Alimento
+        const alimentoRemove = await AlimentoModel
             .findByIdAndRemove(_id);
         res.json(alimentoRemove);
     } catch (err) {

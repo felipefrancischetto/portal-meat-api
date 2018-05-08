@@ -18,4 +18,9 @@ const AlimentoSchema = new Schema({
     }
 }, { versionKey: false });
 
-module.exports = db.model('alimentos', AlimentoSchema);
+const AlimentoModel = db.model('alimentos', AlimentoSchema);
+
+module.exports = {
+    AlimentoSchema,
+    AlimentoModel,
+}
