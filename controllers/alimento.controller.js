@@ -1,5 +1,6 @@
-const { AlimentoModel } = require('../models/alimento.model');
 const { prop } = require('ramda');
+
+const { AlimentoModel } = require('../models/alimento.model');
 
 const alimentos = async (req, res, next) => {
     try {
@@ -23,8 +24,8 @@ const alimentoById = async (req, res, next) => {
 const saveAlimento = async (req, res, next) => {
     try {
         const alimento = prop('body', req);
-        const alimentoModel = new Alimento(alimento);
-        const newAlimento = await AlimentoModel.save();
+        const alimentoModel = new AlimentoModel(alimento);
+        const newAlimento = await alimentoModel.save();
         res.json(newAlimento);
     } catch (err) {
         next(err)

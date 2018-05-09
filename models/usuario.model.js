@@ -1,7 +1,7 @@
 const { Schema } = require('mongoose');
 const db = require('../db.connection');
 
-const usuarioSchema = new Schema({
+const UsuarioSchema = new Schema({
     nome: {
         type: String,
         required: [true, 'Insira o nome do usuário.']
@@ -39,4 +39,10 @@ const usuarioSchema = new Schema({
     }
 }, { versionKey: false });
 
-module.exports = db.model('usuarios', usuarioSchema);
+const UsuarioModel = db.model('usuarios', UsuarioSchema);
+
+module.exports = {
+    UsuarioSchema,
+    UsuarioModel,
+}
+

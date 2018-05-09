@@ -13,4 +13,9 @@ const CardapioSchema = new Schema({
     }
 }, { versionKey : false })
 
-module.exports = db.model('cardapios', CardapioSchema); 
+const CardapioModel = db.model('cardapios', CardapioSchema);
+
+module.exports = {
+    CardapioSchema,
+    CardapioModel,
+}  

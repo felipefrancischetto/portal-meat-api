@@ -1,9 +1,10 @@
-const Cardapio = require('../models/cardapio.model');
 const { prop } = require('ramda');
+
+const { CardapioModel } = require('../models/cardapio.model');
 
 const cardapios = async (req, res, next) => {
     try { 
-        const cardapios = await Cardapio.find(req.body);
+        const cardapios = await CardapioModel.find(req.body);
         res.json(cardapios);
     } catch(err) {
         next(err);
@@ -13,7 +14,7 @@ const cardapios = async (req, res, next) => {
 const cardapioById = async (req, res, next) => {
     try {
         const _id = prop('id', req.params);
-        const cardapio = await Cardapio.findById(_id);
+        const cardapio = await CardapioModel.findById(_id);
         res.json(cardapio);
     } catch(err) {
         next(err);
@@ -23,7 +24,7 @@ const cardapioById = async (req, res, next) => {
 const saveCardapio = async (req, res, next) => { 
     try {
         const cardapio = prop('body', req);
-        const cardapioModel = new Cardapio(cardapio);
+        const cardapioModel = new CardapioModel(cardapio);
         const newCardapio = await cardapioModel.save();
         res.json(newCardapio);
     } catch(err) {
@@ -36,7 +37,7 @@ const updateCardapio = async (req, res, next) => {
         const _id =  prop('id', req.params);
         const cardapio = prop('body', req);
         const cardapioUpdate = await 
-            Cardapio.findByIdAndUpdate(
+        CardapioModel.findByIdAndUpdate(
                 _id,
                 cardapio,
                 { save : true }
@@ -52,7 +53,7 @@ const deleteCardapio = async (req, res, next) => {
         const _id = prop('id', req.params);
         const cardapio = prop('body', req);
         const cardapioDelete = await
-            Cardapio.findByIdAndRemove(_id);
+        CardapioModel.findByIdAndRemove(_id);
         res.json(cardapioDelete);
     } catch(err) {
         next(err);
