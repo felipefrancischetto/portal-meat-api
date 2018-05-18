@@ -8,6 +8,7 @@ const usuarioRouter = require('./routes/usuario.route');
 const alimentoRouter = require('./routes/alimento.route');
 const cardapioRouter = require('./routes/cardapio.route');
 const almocoRouter = require('./routes/almoco.route');
+const agendaRouter = require('./routes/agenda.route');
 
 const app = express();
 
@@ -23,5 +24,6 @@ app.use('/api', usuarioRouter);
 app.use('/api', alimentoRouter);
 app.use('/api', cardapioRouter);
 app.use('/api', almocoRouter);
+app.use('/api', agendaRouter);
 
 module.exports = app;

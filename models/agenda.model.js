@@ -12,10 +12,9 @@ const AgendaSchema = new Schema({
         type: String,
         required: [true, 'Adicione o dia da semana.']
     },
-
     cardapio: {
         type: CardapioSchema,
-        default: null
+        default: null,
     }
 
 }, { versionKey: false });
